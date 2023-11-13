@@ -42,7 +42,7 @@ Instructions on how to set up and run project locally.
 
 ## Technologies Used
 
-- React 
+- React + vite
 - Bootstrap
 - Node.js
 - Express 
