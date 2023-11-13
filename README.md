@@ -1,4 +1,3 @@
-<hr />
 # Bulk Email Tool - Frontend
 
    A bulk email tool to simplify sending emails to multiple recipients.
@@ -61,4 +60,4 @@ This project is licensed under the [MIT License](LICENSE).
 
 Give credit to any libraries, tools, or resources that inspired or supported my project.
 
-
+<hr />
