@@ -1,0 +1,16 @@
+/* Minimum height for the Quill editor */
+.ql-editor {
+  min-height: 300px;
+}
+
+/* Responsive styling for composestyle class */
+@media screen and (min-width: 400px) {
+  .composestyle {
+    width: 100vw;
+  }
+}
+
+/* Default width for composestyle class */
+.composestyle {
+  width: 95vw;
+}

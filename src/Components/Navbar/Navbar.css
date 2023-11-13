@@ -1,0 +1,12 @@
+.imageStyle {
+  height: 48px;
+  padding-bottom: 12px;
+  padding-right: 10px;
+}
+
+/* Media query for screens with a maximum width of 576 pixels */
+@media screen and (max-width: 576px) {
+  .App {
+    width: fit-content;
+  }
+}
