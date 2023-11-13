@@ -60,4 +60,3 @@ This project is licensed under the [MIT License](LICENSE).
 
 Give credit to any libraries, tools, or resources that inspired or supported my project.
 
-<hr />
