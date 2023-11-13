@@ -1,3 +1,4 @@
+<hr />
 # Bulk Email Tool - Frontend
 
    A bulk email tool to simplify sending emails to multiple recipients.
