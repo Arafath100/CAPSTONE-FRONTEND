@@ -48,21 +48,37 @@ const Signup = () => {
         signUpAxios(values)
           .then((res) => {
             console.log(res);
-            if (res.status === 200) {
-              toastSuccess("SignUp Successfull ");
-              defaultToast(
-                "Check your Email and Verify your token and then login"
-              );
-              navigate("/login");
-              setButtonLoader(true);
-            }
-          })
-          .catch((res) => {
-            if (res.response.status === 400) {
-              toastWarn("User Already exist");
-              setButtonLoader(true);
-            }
-          });
+          //   if (res.status === 200) {
+          //     toastSuccess("SignUp Successfully");
+          //     defaultToast(
+          //       "Check your Email and Verify your token and then login"
+          //     );
+          //     defaultToast("")
+          //     navigate("/login");
+          //     setButtonLoader(true);
+          //   }
+          // })
+          // .catch((res) => {
+          //   if (res.response.status === 400) {
+          //     toastWarn("User Already exist");
+          //     setButtonLoader(true);
+          //   }
+          // });
+          if (res.status === 200) {
+            toastSuccess("Sign Up Successfully");
+            defaultToast("Check your Email and Verify your token and then login");
+            navigate("/login");
+            setButtonLoader(true);
+          } else if (res.status === 201) {
+            defaultToast("Email might take some time to arrive. Please check your spam folder.");
+            setTimeout(() => {
+              defaultToast("If you haven't received the email, please wait for a few minutes and check again.");
+            }, 2 * 60 * 1000); // 2 minutes in milliseconds
+          } else if (res.response && res.response.status === 400) {
+            toastWarn("User Already Exists");
+            setButtonLoader(true);
+          }
+        });
       },
     });
 

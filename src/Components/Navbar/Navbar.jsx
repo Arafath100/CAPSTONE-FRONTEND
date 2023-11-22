@@ -7,7 +7,10 @@ import Context from "../../Context/Context";
 import logo from "./mail.png";
 import "./Navbar.css";
 import { BiLogOutCircle } from "react-icons/bi";
-import { FaPowerOff } from "react-icons/fa";
+import { IoHome, IoSend, IoSettingsSharp } from "react-icons/io5";
+import { GoGraph } from "react-icons/go";
+import { CiLogout } from "react-icons/ci";
+import { TbListDetails } from "react-icons/tb";
 
 // Functional component for the navigation bar
 function NavComp() {
@@ -27,17 +30,17 @@ function NavComp() {
         <Container className="">
           <Navbar.Brand onClick={() => navigate("/")} className="overflow-auto">
             <img src={logo} alt="" className="imageStyle " />
-            <b>BULK EMAIL TOOL</b>
+            <b>{window.innerWidth < 770 ? logo : 'BULK EMAIL TOOL'}</b>
           </Navbar.Brand>
           {contextData.navFlag ? (
             <>
               {" "}
               <Nav className="me-auto">
-                <Nav.Link onClick={() => navigate("/")} className="hover">HOME</Nav.Link>
-                <Nav.Link onClick={() => navigate("/compose")} className="hover"> COMPOSE </Nav.Link>
-                <Nav.Link onClick={() => navigate("/graph")} className="hover">GRAPH</Nav.Link>
-                <Nav.Link onClick={() => navigate("/log")} className="hover">LOG</Nav.Link>
-                <Nav.Link onClick={() => navigate("/settings")} className="hover">SETTINGS</Nav.Link>
+                <Nav.Link onClick={() => navigate("/")} className="hover">{window.innerWidth < 770 ? <IoHome /> : 'HOME'}</Nav.Link>
+                <Nav.Link onClick={() => navigate("/compose")} className="hover">{window.innerWidth < 770 ? <IoSend /> : 'COMPOSE'} </Nav.Link>
+                <Nav.Link onClick={() => navigate("/graph")} className="hover">{window.innerWidth < 770 ? <GoGraph /> : 'GRAPH'}</Nav.Link>
+                <Nav.Link onClick={() => navigate("/log")} className="hover">{window.innerWidth < 770 ? <TbListDetails /> : 'LOG'}</Nav.Link>
+                <Nav.Link onClick={() => navigate("/settings")} className="hover">{window.innerWidth < 770 ? <IoSettingsSharp /> : 'SETTINGS'}</Nav.Link>
               </Nav>
               <button
                 type="button"
@@ -48,7 +51,7 @@ function NavComp() {
                 data-bs-custom-class="custom-tooltip"
                 data-bs-title="This top tooltip is themed via CSS variables."
               >
-                {window.innerWidth < 770 ? <BiLogOutCircle /> : <FaPowerOff />}
+                {window.innerWidth < 770 ? <CiLogout /> : 'LOGOUT'}
               </button>
             </>
           ) : (
