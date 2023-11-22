@@ -29,18 +29,39 @@ function NavComp() {
       <Navbar bg="dark" variant="dark">
         <Container className="">
           <Navbar.Brand onClick={() => navigate("/")} className="overflow-auto">
-            <img src={logo} alt="" className="imageStyle " />
-            <b>{window.innerWidth < 770 ? logo : 'BULK EMAIL TOOL'}</b>
+            <b>
+              {window.innerWidth < 770 ? (
+                <img src={logo} alt="" className="imageStyle " />
+              ) : (
+                "BULK EMAIL TOOL"
+              )}
+            </b>
           </Navbar.Brand>
           {contextData.navFlag ? (
             <>
               {" "}
               <Nav className="me-auto">
-                <Nav.Link onClick={() => navigate("/")} className="hover">{window.innerWidth < 770 ? <IoHome /> : 'HOME'}</Nav.Link>
-                <Nav.Link onClick={() => navigate("/compose")} className="hover">{window.innerWidth < 770 ? <IoSend /> : 'COMPOSE'} </Nav.Link>
-                <Nav.Link onClick={() => navigate("/graph")} className="hover">{window.innerWidth < 770 ? <GoGraph /> : 'GRAPH'}</Nav.Link>
-                <Nav.Link onClick={() => navigate("/log")} className="hover">{window.innerWidth < 770 ? <TbListDetails /> : 'LOG'}</Nav.Link>
-                <Nav.Link onClick={() => navigate("/settings")} className="hover">{window.innerWidth < 770 ? <IoSettingsSharp /> : 'SETTINGS'}</Nav.Link>
+                <Nav.Link onClick={() => navigate("/")} className="hover">
+                  {window.innerWidth < 770 ? <IoHome /> : "HOME"}
+                </Nav.Link>
+                <Nav.Link
+                  onClick={() => navigate("/compose")}
+                  className="hover"
+                >
+                  {window.innerWidth < 770 ? <IoSend /> : "COMPOSE"}{" "}
+                </Nav.Link>
+                <Nav.Link onClick={() => navigate("/graph")} className="hover">
+                  {window.innerWidth < 770 ? <GoGraph /> : "GRAPH"}
+                </Nav.Link>
+                <Nav.Link onClick={() => navigate("/log")} className="hover">
+                  {window.innerWidth < 770 ? <TbListDetails /> : "LOG"}
+                </Nav.Link>
+                <Nav.Link
+                  onClick={() => navigate("/settings")}
+                  className="hover"
+                >
+                  {window.innerWidth < 770 ? <IoSettingsSharp /> : "SETTINGS"}
+                </Nav.Link>
               </Nav>
               <button
                 type="button"
@@ -51,7 +72,7 @@ function NavComp() {
                 data-bs-custom-class="custom-tooltip"
                 data-bs-title="This top tooltip is themed via CSS variables."
               >
-                {window.innerWidth < 770 ? <CiLogout /> : 'LOGOUT'}
+                {window.innerWidth < 770 ? <CiLogout /> : "LOGOUT"}
               </button>
             </>
           ) : (
