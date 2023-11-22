@@ -2,7 +2,7 @@ import { useFormik } from "formik";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as yup from "yup";
-import { singUpAxios } from "../../Services/axios";
+import { signUpAxios } from "../../Services/axios";
 import { ColorRingLoading } from "../../Services/loading";
 import { defaultToast, toastSuccess, toastWarn } from "../../Services/tostify";
 
@@ -45,7 +45,7 @@ const Signup = () => {
       validationSchema: userValidationSchema,
       onSubmit: (values) => {
         setButtonLoader(false);
-        singUpAxios(values)
+        signUpAxios(values)
           .then((res) => {
             console.log(res);
             if (res.status === 200) {

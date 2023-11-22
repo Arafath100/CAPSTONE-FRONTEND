@@ -4,7 +4,7 @@ import axios from "axios";
 import API from "../url";
 
 // User registration
-export const singUpAxios = (values) => {
+export const signUpAxios = (values) => {
   return axios({
     url: `${API}/users/signup`,
     method: "post",

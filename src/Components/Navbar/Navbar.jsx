@@ -48,7 +48,7 @@ function NavComp() {
                 data-bs-custom-class="custom-tooltip"
                 data-bs-title="This top tooltip is themed via CSS variables."
               >
-                {window.innerWidth < 770 ? <BiLogOutCircle /> : ""}<FaPowerOff />
+                {window.innerWidth < 770 ? <BiLogOutCircle /> : <FaPowerOff />}
               </button>
             </>
           ) : (

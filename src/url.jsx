@@ -1,4 +1,4 @@
 // const API = "http://localhost:4000";
-const API = 'https://bulk-email-tool-4wos.onrender.com';
+const API = 'https://capstone-project-bulk-email-tool-guvi.onrender.com';
 
 export default API;
