@@ -191,7 +191,7 @@ const Compose = () => {
             <form onSubmit={handleSubmit}>
               <Form.Group controlId="formFileLg " className="mb-3">
                 <Form.Label className="text-start w-100">
-                  Enter Email{" "}
+                Recepiant (Only select Excel file below){" "}
                 </Form.Label>
                 <Form.Control
                   type="file"
@@ -216,37 +216,21 @@ const Compose = () => {
                     className="text-start d-flex"
                     aria-describedby="fileView"
                   >
-                    Select the Excel file which contain only email's in fist
-                    column one by one
-                    <Button
-                      className="mx-2 p-0"
-                      variant="link"
-                      size="sm"
-                      onClick={() => contextData.setExampleModalOfExcel(true)}
-                    >
-                      Example
-                    </Button>
+                    Methodically sift through Excel files, singling out those
+                    that exclusively house email addresses in their primary
+                    column, one by one.
+                    
                   </Form.Text>
                 )}
               </Form.Group>
-              {recepaintInfo.length !== 0 && (
-                <Button
-                  variant="outline-secondary"
-                  id="fileView"
-                  className="text-start d-flex"
-                  size="sm"
-                  onClick={() => contextData.setComposeRecepiantModal(true)}
-                >
-                  View Recepiant details
-                </Button>
-              )}
+              
               <br />
               <Form.Group controlId="formFile" className="mb-3">
                 <Form.Label className="text-start w-100">Subject </Form.Label>
                 <Form.Control
                   type="text"
                   isInvalid={errors.subject && touched.subject}
-                  placeholder=""
+                  placeholder="Subject"
                   value={values.subject}
                   onChange={handleChange}
                   name="subject"

@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import Provider from "./Context/Provider";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -17,10 +17,10 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 // Render the application wrapped with BrowserRouter and Provider
 root.render(
-  <BrowserRouter>
+  <Router>
     <Provider>
       <App />
     </Provider>
     <ToastContainer />
-  </BrowserRouter>
+  </Router>
 );

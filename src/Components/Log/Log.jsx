@@ -32,10 +32,10 @@ const Log = () => {
   }, []);// Empty dependency array ensures useEffect runs only once on mount
   
   return (
-    <div className=" logStyle container-md">
+    <div className="logStyle container-md ">
       {loading ? (
         <div
-          className="d-flex align-items-center w-100 justify-content-center"
+          className="d-flex align-items-center w-100 justify-content-center "
           style={{ height: "80vh" }}
         >
           <CircularLoadingWithMultipleCircle />

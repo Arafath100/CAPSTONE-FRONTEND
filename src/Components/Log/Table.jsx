@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import { useNavigate } from "react-router-dom";
 import Context from "../../Context/Context";
-import { TbInfoSquareRounded } from "react-icons/tb";
+import { FaInfoCircle } from "react-icons/fa";
 import { Tooltip } from "react-tooltip";
 
 // Functional component for rendering the log table
@@ -15,9 +15,11 @@ function TableComp() {
   const navigate = useNavigate();
 
   return (
-    <Table striped className="text-start " style={{ overflowX: "auto" }}>
+    <>
+    <br />
+    <Table striped className="text-start table-dark table-bordered border-info" style={{ overflowX: "auto" }}>
       <thead>
-        <tr>
+        <tr className="text-uppercase">
           <th>S.no</th>
           <th>Date(Day Month Date Year)</th>
           <th>Time</th>
@@ -48,7 +50,8 @@ function TableComp() {
                   data-tooltip-id="my-tooltip"
                   data-tooltip-content="View More Details"
                 >
-                  <TbInfoSquareRounded />
+                  {/* <TbInfoSquareRounded /> */}
+                  <FaInfoCircle />
                 </Button>
                 <Tooltip id="my-tooltip" place="bottom"></Tooltip>
               </td>
@@ -57,6 +60,7 @@ function TableComp() {
         })}
       </tbody>
     </Table>
+    </>
   );
 }
 

@@ -60,13 +60,13 @@ function Modalcomp(props) {
               settings.
             </li>
           </ol>
-          <h4>Video Tutorial: </h4>
-          <iframe
+          {/* <h4>Video Tutorial: </h4> */}
+          {/* <iframe
             src="https://drive.google.com/file/d/1c06YYYKA1nUOfbdRYUPzq9nHYLfkyzTR/preview"
             width="100%"
             height="480"
             allow="autoplay"
-          ></iframe>
+          ></iframe> */}
           <br />
           <br />
           <h4>Note:</h4>

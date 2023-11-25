@@ -252,7 +252,7 @@ const Settings = () => {
                 <hr />
                 <p className="text-start">
                   If you didn't provide any credentials above.E-mail should be
-                  send from <b>mern.text.mail@gmail.com</b>.
+                  send from <b>arafath2092@gmail.com</b>.
                 </p>
                 <br />
               </form>

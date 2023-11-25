@@ -8,7 +8,7 @@ import logo from "./mail.png";
 import "./Navbar.css";
 import { IoHome, IoSend, IoSettingsSharp } from "react-icons/io5";
 import { GoGraph } from "react-icons/go";
-import { CiLogout } from "react-icons/ci";
+import { FaPowerOff  } from "react-icons/fa";
 import { TbListDetails } from "react-icons/tb";
 
 // Functional component for the navigation bar
@@ -71,7 +71,7 @@ function NavComp() {
                 data-bs-custom-class="custom-tooltip"
                 data-bs-title="This top tooltip is themed via CSS variables."
               >
-                {window.innerWidth < 770 ? <CiLogout /> : "LOGOUT"}
+                {window.innerWidth < 770 ? <FaPowerOff  /> : "LOGOUT"}
               </button>
             </>
           ) : (

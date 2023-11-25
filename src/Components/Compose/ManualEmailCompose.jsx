@@ -132,7 +132,7 @@ export function ManualEmailCompose({ reUse }) {
         <form onSubmit={handleSubmit}>
           <Form.Group controlId="formField " className="mb-3">
             <Form.Label className="text-start w-100">
-              Recepiant (Only select Excel file below)
+              Enter Email
             </Form.Label>
             <InputGroup>
               <Form.Control
@@ -143,6 +143,7 @@ export function ManualEmailCompose({ reUse }) {
                 onBlur={handleBlur}
                 name="emails"
                 isInvalid={errors.emails && touched.emails}
+                placeholder="Email"
               />
               {values.emails.length >= 5 && (
                 <Button
@@ -174,7 +175,7 @@ export function ManualEmailCompose({ reUse }) {
             <Form.Label className="text-start w-100">Subject </Form.Label>
             <Form.Control
               type="text"
-              placeholder=""
+              placeholder="Subject"
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.subject}
