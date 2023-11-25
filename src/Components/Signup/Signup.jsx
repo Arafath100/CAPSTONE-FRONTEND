@@ -66,7 +66,8 @@ const Signup = () => {
           // });
           if (res.status === 200) {
             toastSuccess("Sign Up Successfully");
-            defaultToast("Check your Email and Verify your token and then login");
+            defaultToast("Email might take some time to arrive.Check your Email and Verify your token and then login");
+            defaultToast("If you haven't received the email, please wait for a few minutes and check again.");
             navigate("/login");
             setButtonLoader(true);
           } else if (res.status === 201) {

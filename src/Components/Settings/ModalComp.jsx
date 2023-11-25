@@ -1,7 +1,6 @@
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
-// Modal component displaying instructions on generating App passwords for Gmail
 function Modalcomp(props) {
   return (
     <>
@@ -14,7 +13,7 @@ function Modalcomp(props) {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            How to generate App password for your Email are shown:
+            Instructions for Generating App Passwords for Gmail:
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -27,56 +26,50 @@ function Modalcomp(props) {
               </a>
             </li>
             <li>
-              Click <b>Security</b> on your left side tab.
+              On the left side, click on <b>Security</b>.
             </li>
             <li>
-              Click <b>2-Step Verification</b> on below "Sign in to Google
-              topic"
+              Under "Sign in to Google," select <b>2-Step Verification</b>.
             </li>
             <li>
-              After that Generate Otp,Enter Otp into the input box, hit Enter
-              and complete the two step verification.{" "}
+              Generate an OTP, enter it in the input box, and complete the
+              two-step verification.
             </li>
             <li>
-              Come back to the{" "}
+              Return to{" "}
               <a href="https://myaccount.google.com/security">
                 https://myaccount.google.com/security
               </a>{" "}
               page.
             </li>
-            <li>Click App passwords below the 2-Step verification now.</li>
             <li>
-              Now it ask you what type of app or device you want to generate the
-              app password in that type some thing what you want related to our
-              App. <b>Eg:Bulk Email</b>
-            </li>
-            <li>Then hit generate button.</li>
-            <li>
-              Now it show 12 digit generate app password copy and past it in our
-              website settings password
+              Click on <b>App passwords</b> below 2-Step Verification.
             </li>
             <li>
-              Finally, Compose mail and send from your email id what you set in
-              settings.
+              It will prompt you to specify the app or device for which you want
+              to generate the app password. For example: <b>Bulk Email</b>.
+            </li>
+            <li>Click the generate button.</li>
+            <li>
+              It will display a 12-digit generated app password. Copy and paste
+              it into your website's password settings.
+            </li>
+            <li>
+              Finally, compose and send an email using the email ID you set in
+              the settings.
             </li>
           </ol>
-          {/* <h4>Video Tutorial: </h4> */}
-          {/* <iframe
-            src="https://drive.google.com/file/d/1c06YYYKA1nUOfbdRYUPzq9nHYLfkyzTR/preview"
-            width="100%"
-            height="480"
-            allow="autoplay"
-          ></iframe> */}
+
           <br />
           <br />
           <h4>Note:</h4>
           <ul>
-            <li>Above tutorial is for gmail users only.</li>
+            <li>This tutorial is for Gmail users only.</li>
             <li>
-              You are using another mail service create app password like this
-              in your email provider.
+              If you're using another mail service, follow similar steps
+              provided by your email provider to create an app password.
             </li>
-            <li>You can delete and update this settings when ever you want.</li>
+            <li>You can delete or update these settings whenever necessary.</li>
           </ul>
         </Modal.Body>
         <Modal.Footer>
