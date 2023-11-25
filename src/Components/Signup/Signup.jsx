@@ -66,7 +66,7 @@ const Signup = () => {
           if (res.status === 200) {
             toastSuccess("Sign Up Successfully");
             defaultToast(
-              "Email might take some time to arrive.Check your Email and Verify your token and then loginIf you haven't received the email, please wait for a few minutes and check again."
+              "Email might take some time to arrive.Check your Email and Verify your token and then login.If you haven't received the email, please wait for a few minutes and check again."
             );
             // defaultToast("If you haven't received the email, please wait for a few minutes and check again.");
             navigate("/login");
