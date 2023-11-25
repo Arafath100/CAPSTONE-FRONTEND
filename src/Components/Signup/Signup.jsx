@@ -45,9 +45,8 @@ const Signup = () => {
       validationSchema: userValidationSchema,
       onSubmit: (values) => {
         setButtonLoader(false);
-        signUpAxios(values)
-          .then((res) => {
-            console.log(res);
+        signUpAxios(values).then((res) => {
+          console.log(res);
           //   if (res.status === 200) {
           //     toastSuccess("SignUp Successfully");
           //     defaultToast(
@@ -66,14 +65,20 @@ const Signup = () => {
           // });
           if (res.status === 200) {
             toastSuccess("Sign Up Successfully");
-            defaultToast("Email might take some time to arrive.Check your Email and Verify your token and then login");
-            defaultToast("If you haven't received the email, please wait for a few minutes and check again.");
+            defaultToast(
+              "Email might take some time to arrive.Check your Email and Verify your token and then loginIf you haven't received the email, please wait for a few minutes and check again."
+            );
+            // defaultToast("If you haven't received the email, please wait for a few minutes and check again.");
             navigate("/login");
             setButtonLoader(true);
           } else if (res.status === 201) {
-            defaultToast("Email might take some time to arrive. Please check your spam folder.");
+            defaultToast(
+              "Email might take some time to arrive. Please check your spam folder."
+            );
             setTimeout(() => {
-              defaultToast("If you haven't received the email, please wait for a few minutes and check again.");
+              defaultToast(
+                "If you haven't received the email, please wait for a few minutes and check again."
+              );
             }, 2 * 60 * 1000); // 2 minutes in milliseconds
           } else if (res.response && res.response.status === 400) {
             toastWarn("User Already Exists");
