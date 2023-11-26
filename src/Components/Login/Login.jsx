@@ -154,7 +154,7 @@ const Login = () => {
           </div>
           <br />
           <div>
-            You Already have an Account? <Link to="/signup">Signup</Link>
+            Don't have an Account? <Link to="/signup">Signup</Link>
           </div>
         </form>
       </div>
