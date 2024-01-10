@@ -24,13 +24,14 @@ const Signup = () => {
       .required("Email is required"),
     password: yup
       .string()
-      .min(6, "Pasword must have atleast 6 characters")
+      .min(6, "Password must have at least 6 characters")
       .required("Password is required"),
     confirmPassword: yup
       .string()
       .oneOf([yup.ref("password"), null], "Password must match")
       .required("Password is required"),
   });
+
   const init = {
     userName: "",
     email: "",
@@ -38,7 +39,7 @@ const Signup = () => {
     confirmPassword: "",
   };
 
-  //formik
+  // Formik
   const { values, handleChange, errors, handleBlur, touched, handleSubmit } =
     useFormik({
       initialValues: init,
@@ -47,28 +48,12 @@ const Signup = () => {
         setButtonLoader(false);
         signUpAxios(values).then((res) => {
           console.log(res);
-          //   if (res.status === 200) {
-          //     toastSuccess("SignUp Successfully");
-          //     defaultToast(
-          //       "Check your Email and Verify your token and then login"
-          //     );
-          //     defaultToast("")
-          //     navigate("/login");
-          //     setButtonLoader(true);
-          //   }
-          // })
-          // .catch((res) => {
-          //   if (res.response.status === 400) {
-          //     toastWarn("User Already exist");
-          //     setButtonLoader(true);
-          //   }
-          // });
+
           if (res.status === 200) {
             toastSuccess("Sign Up Successfully");
             defaultToast(
               "Email might take some time to arrive.Check your Email and Verify your token and then login.If you haven't received the email, please wait for a few minutes and check again."
             );
-            // defaultToast("If you haven't received the email, please wait for a few minutes and check again.");
             navigate("/login");
             setButtonLoader(true);
           } else if (res.status === 201) {
@@ -100,10 +85,9 @@ const Signup = () => {
               User Name
             </label>
             <input
-              type="text "
-              required=""
+              type="text"
               className={
-                errors.userName && touched.userName !== undefined
+                errors.userName && touched.userName
                   ? "form-control is-invalid"
                   : "form-control"
               }
@@ -111,13 +95,12 @@ const Signup = () => {
               id="usernameid"
               name="userName"
               onChange={handleChange}
-              aria-describedby="usernameHelp"
               onBlur={handleBlur}
+              required
             />
-            <div id="usernameHelp" className="invalid-feedback">
-              {errors.userName}
-            </div>
+            <div className="invalid-feedback">{errors.userName}</div>
           </div>
+
           <div className="mb-3">
             <label htmlFor="exampleInputEmail1" className="form-label">
               Email address

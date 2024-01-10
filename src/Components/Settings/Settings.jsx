@@ -136,7 +136,7 @@ const Settings = () => {
                 onSubmit={(e) => handleSave(e)}
               >
                 {alert === "show" && <AlertComp />}
-                <Form.Label htmlFor="em">Email id</Form.Label>
+                <Form.Label htmlFor="em">Email Id</Form.Label>
                 <Form.Control
                   type="email"
                   id="em"

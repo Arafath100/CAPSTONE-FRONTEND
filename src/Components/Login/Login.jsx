@@ -31,7 +31,7 @@ const Login = () => {
     email: "",
     password: "",
   };
-  
+
   //formik
   const { values, handleChange, errors, handleBlur, touched, handleSubmit } =
     useFormik({
@@ -154,7 +154,8 @@ const Login = () => {
           </div>
           <br />
           <div>
-            Don't have an Account? <Link to="/signup">Signup</Link>
+            Don't have an Account? <br />
+            <Link to="/signup">Signup</Link>
           </div>
         </form>
       </div>

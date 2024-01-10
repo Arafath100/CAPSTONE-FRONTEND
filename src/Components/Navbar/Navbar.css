@@ -4,6 +4,52 @@
   padding-right: 10px;
 }
 
+.home-link:hover {
+  background-color: #393d41;
+  border-radius: 0.2rem;
+  border: 1px solid ;
+}
+
+.compose-link:hover {
+  background-color: #393d41;
+  border-radius: 0.2rem;
+  border: 1px solid ;
+}
+
+.graph-link:hover {
+  background-color: #393d41;
+  border-radius: 0.2rem;
+  border: 1px solid ;
+}
+
+.log-link:hover {
+  background-color: #393d41;
+  border-radius: 0.2rem;
+  border: 1px solid ;
+}
+
+.settings-link:hover {
+  background-color: #393d41;
+  border-radius: 0.2rem;
+  border: 1px solid ;
+}
+
+.after::after {
+  content: "";
+  height: 2px;
+  width: 100%;
+  background: rgb(6, 185, 230);
+  /* position: absolute; */
+  display: block;
+  opacity: 0;
+  transition: all 0.2s;
+  pointer-events: none;
+}
+
+.after:hover::after {
+  opacity: 1;
+}
+
 /* Media query for screens with a maximum width of 576 pixels */
 @media screen and (max-width: 576px) {
   .App {
