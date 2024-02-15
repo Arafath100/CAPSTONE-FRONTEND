@@ -3,81 +3,151 @@
 import axios from "axios";
 import API from "../url";
 
-const axiosInstance = axios.create({
-  baseURL: API,
-  headers: {
-    "Content-Type": "application/json",
-    "x-auth-token": localStorage.getItem("x-Auth-token"),
-    user: localStorage.getItem("user"),
-  },
-});
+// User registration
+export const signUpAxios = (values) => {
+  return axios({
+    url: `${API}/users/signup`,
+    method: "post",
+    data: values,
+  });
+};
 
-export const signUpAxios = (values) => axiosInstance.post("/users/signup", values);
+// Verify email after registration
+export const verifyEmailAxios = (params) => {
+  return axios({
+    url: `${API}/users/verifyemail/${params}`,
+    method: "get",
+  });
+};
 
-export const verifyEmailAxios = (params) => axiosInstance.get(`/users/verifyemail/${params}`);
+// Request for resetting password
+export const passResetAxios = (data) => {
+  return axios({
+    url: `${API}/users/resetpassword`,
+    method: "post",
+    data: data,
+  });
+};
 
-export const passResetAxios = (data) => axiosInstance.post("/users/resetpassword", data);
+// Check the validity of the reset password string
+export const checkString = (data) => {
+  return axios({
+    url: `${API}/users/resetpassword/${data}`,
+    method: "get",
+  });
+};
 
-export const checkString = (data) => axiosInstance.get(`/users/resetpassword/${data}`);
+// Change password after resettin
+export const changePassAxios = (data, string) => {
+  return axios({
+    url: `${API}/users/changepassword/${string}`,
+    method: "post",
+    data: data,
+  });
+};
 
-export const changePassAxios = (data, string) =>
-  axiosInstance.post(`/users/changepassword/${string}`, data);
+// User login
+export const loginAxios = (data) => {
+  return axios({
+    url: `${API}/users/login`,
+    method: "post",
+    data: data,
+  });
+};
 
-export const loginAxios = (data) => axiosInstance.post("/users/login", data);
+// Verify user token
+export const verifyTokenAxios = (data) => {
+  return axios({
+    url: `${API}/users/verifyToken`,
+    method: "get",
+    headers: {
+      "x-auth-token": localStorage.getItem("x-Auth-token"),
+    },
+  });
+};
 
-export const verifyTokenAxios = () =>
-  axiosInstance.get("/users/verifyToken")
-    .catch(error => {
-      // Handle error globally if needed
-      console.error("Error in verifyTokenAxios:", error);
-      throw error; // Rethrow the error to propagate it
-    });
+// Email settings update
+export const settingsAxios = (data) => {
+  return axios({
+    url: `${API}/email/settings`,
+    method: "post",
+    data: data,
+    headers: {
+      "x-auth-token": localStorage.getItem("x-Auth-token"),
+    },
+  });
+};
 
-export const settingsAxios = (data) =>
-  axiosInstance.post("/email/settings", data)
-    .catch(error => {
-      console.error("Error in settingsAxios:", error);
-      throw error;
-    });
+// Get user credentials
+export const getCredential = () => {
+  return axios({
+    url: `${API}/email/getCredential`,
+    method: "get",
+    headers: {
+      "x-auth-token": localStorage.getItem("x-Auth-token"),
+      user: localStorage.getItem("user"),
+    },
+  });
+};
 
-export const getCredential = () =>
-  axiosInstance.get("/email/getCredential")
-    .catch(error => {
-      console.error("Error in getCredential:", error);
-      throw error;
-    });
+// Send emails to recipients
+export const sendEmailToRecepiantAxios = (data) => {
+  return axios({
+    url: `${API}/email/sendEmails`,
+    method: "post",
+    headers: {
+      "x-auth-token": localStorage.getItem("x-Auth-token"),
+      user: localStorage.getItem("user"),
+    },
+    data: data,
+  });
+};
 
-export const sendEmailToRecepiantAxios = (data) =>
-  axiosInstance.post("/email/sendEmails", data)
-    .catch(error => {
-      console.error("Error in sendEmailToRecepiantAxios:", error);
-      throw error;
-    });
+// Delete user credentials
+export const deleteCredentials = () => {
+  return axios({
+    url: `${API}/email/deleteCred`,
+    method: "delete",
+    headers: {
+      "x-auth-token": localStorage.getItem("x-Auth-token"),
+      user: localStorage.getItem("user"),
+    },
+  });
+};
 
-export const deleteCredentials = () =>
-  axiosInstance.delete("/email/deleteCred")
-    .catch(error => {
-      console.error("Error in deleteCredentials:", error);
-      throw error;
-    });
+// Get user's email log details
+export const getLogDetails = () => {
+  return axios({
+    url: `${API}/email/getLogDetailsData`,
+    method: "get",
+    headers: {
+      "x-auth-token": localStorage.getItem("x-Auth-token"),
+      user: localStorage.getItem("user"),
+    },
+  });
+};
 
-export const getLogDetails = () =>
-  axiosInstance.get("/email/getLogDetailsData")
-    .catch(error => {
-      console.error("Error in getLogDetails:", error);
-      throw error;
-    });
+// Get graph data for email analytics
+export const graphDataAxios = (data) => {
+  return axios({
+    url: `${API}/email/getGraphData`,
+    method: "post",
+    headers: {
+      "x-auth-token": localStorage.getItem("x-Auth-token"),
+      user: localStorage.getItem("user"),
+    },
+    data: data,
+  });
+};
 
-export const graphDataAxios = (data) =>
-  axiosInstance.post("/email/getGraphData", data)
-    .catch(error => {
-      console.error("Error in graphDataAxios:", error);
-      throw error;
-    });
-
-export const getMailsCountAxios = () =>
-  axiosInstance.get("/email/getMailSendToday")
-    .catch(error => {
-      console.error("Error in getMailsCountAxios:", error);
-      throw error;
-    });
+// Get count of emails sent today
+export const getMailsCountAxios = () => {
+  return axios({
+    url: `${API}/email/getMailSendToday`,
+    method: "get",
+    headers: {
+      "x-auth-token": localStorage.getItem("x-Auth-token"),
+      user: localStorage.getItem("user"),
+    },
+  });
+};

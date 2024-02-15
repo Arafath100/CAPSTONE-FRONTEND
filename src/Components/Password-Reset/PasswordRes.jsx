@@ -8,33 +8,35 @@ import { errorToast, toastSuccess } from "../../Services/tostify";
 // Functional component for the password reset form
 const PasswordRes = () => {
   // State for the email input and button status
-  const [email, setEmail] = useState("");
-  const [isButtonLoading, setIsButtonLoading] = useState(false);
+  const [change, handleChange] = useState("");
+  const [stateButton, setStateButton] = useState(true);
 
   // Function to handle form submission
   const handleSubmit = (e) => {
+    setStateButton(false);
     e.preventDefault();
-    setIsButtonLoading(true);
-
-    passResetAxios({ email })
+    passResetAxios({ email: change })
       .then((res) => {
-        setIsButtonLoading(false);
+        setStateButton(true);
         if (res.status === 200) {
-          setEmail("");
-          toastSuccess("Reset link generated successfully. Check your email.");
+          handleChange("");
+          toastSuccess("Reset link Generated Successfully...Check your e-mail");
         }
       })
       .catch((err) => {
-        setIsButtonLoading(false);
+        setStateButton(false);
         if (err.response.status === 401) {
           errorToast("Invalid Credentials");
-          setEmail("");
+          handleChange("");
         }
       });
   };
-
+  
   return (
-    <div className="d-flex justify-content-center align-items-center m-2 p-2" style={{ height: "80vh" }}>
+    <div
+      className="d-flex justify-content-center align-items-center m-2 p-2"
+      style={{ height: "80vh" }}
+    >
       <div>
         <h4 className="text-start">Password Reset Form :</h4>
         <hr />
@@ -45,8 +47,8 @@ const PasswordRes = () => {
               className="form-control"
               placeholder="Registered Email-id"
               aria-label="Recipient's username"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={change}
+              onChange={(e) => handleChange(e.target.value)}
               aria-describedby="button-addon2"
               required
             />
@@ -55,12 +57,12 @@ const PasswordRes = () => {
               type="submit"
               id="button-addon2"
             >
-              {isButtonLoading ? <ColorRingLoading /> : "Send"}
+              {stateButton ? "Send" : <ColorRingLoading />}
             </button>
           </div>
         </form>
         <div className="form-text">
-          Enter your valid email Id above and hit the send button to get the
+          Enter your valid email Id above and hit send button to get the
           password reset mail in your E-mail
         </div>
         <br />
