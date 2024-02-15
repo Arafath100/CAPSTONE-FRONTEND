@@ -1,24 +1,23 @@
+import React, { useContext } from "react";
 import { addDays } from "date-fns";
-import { useContext, useState } from "react";
-import React from "react";
 import { DateRangePicker } from "react-date-range";
 import Context from "../../Context/Context";
 
 // DatePicker Component
 const DatePicker = () => {
-  const contextData = useContext(Context);
+  const { setTimeStamp, timeStamp } = useContext(Context);
 
   return (
     <div>
       {/* DateRangePicker for selecting date range */}
       <DateRangePicker
-        onChange={(item) => contextData.setTimeStamp([item.selection])}
+        onChange={(item) => setTimeStamp([item.selection])}
         months={1}
         minDate={addDays(new Date(), -300)}
         maxDate={addDays(new Date(), 900)}
         direction="vertical"
         scroll={{ enabled: true }}
-        ranges={contextData.timeStamp}
+        ranges={timeStamp}
       />
     </div>
   );

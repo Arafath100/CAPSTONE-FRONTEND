@@ -4,26 +4,24 @@ import Context from "../../Context/Context";
 import { graphDataAxios } from "../../Services/axios";
 
 function ChartComp(props) {
-  //
-  const contextDate = useContext(Context);
-  const selectedDate = contextDate.timeStamp[0];
-  // const sd=selectedDate.startDate
-  let ed = selectedDate.endDate;
-  ed = new Date(new Date(ed).setDate(new Date().getDate() + 1));
-  // if(+sd === +ed){
-  // }
-  // console.log({...new Date(new Date("2023-03-08T18:30:00.000Z").setDate(new Date().getDate()+1)),endDate:ed});
+  const contextData = useContext(Context);
+  const selectedDate = contextData.timeStamp[0];
+
+  // Calculate endDate
+  const endDate = new Date(selectedDate.endDate);
+  const adjustedEndDate = new Date(endDate.setDate(endDate.getDate() + 1));
+
   const [plotData, setPlotData] = useState({
     date: [],
     count: [],
   });
 
   useEffect(() => {
-    graphDataAxios({ ...contextDate.timeStamp[0], endDate: ed })
+    graphDataAxios({ ...selectedDate, endDate: adjustedEndDate })
       .then((res) => {
-        let dataArr = res.data.data;
-        let date = [];
-        let count = [];
+        const dataArr = res.data.data;
+        const date = [];
+        const count = [];
         dataArr.forEach((obj) => {
           const stamp = new Date(obj.time);
           date.push(
@@ -40,46 +38,47 @@ function ChartComp(props) {
         setPlotData({ date: date, count: count });
       })
       .catch((err) => console.log(err));
-  }, [contextDate.timeStamp]);
+  }, [selectedDate]);
 
-  let options = {
-    options: {
-      chart: {
-        id: "basic-bar",
-      },
-      xaxis: {
-        categories: plotData.date,
-      },
+  const options = {
+    chart: {
+      id: "basic-bar",
     },
-    series: [
+    xaxis: {
+      categories: plotData.date,
+    },
+  };
+
+  const series = [
+    {
+      name: "Email Sent",
+      data: plotData.count,
+    },
+  ];
+
+  const donutOptions = {
+    chart: {
+      type: "donut",
+    },
+    labels: plotData.date,
+    responsive: [
       {
-        name: "Email Sent",
-        data: plotData.count,
+        breakpoint: 480,
+        options: {
+          chart: {
+            width: 200,
+          },
+          legend: {
+            position: "bottom",
+          },
+        },
       },
     ],
   };
 
-  let donutData = {
+  const donutData = {
     series: plotData.count,
-    options: {
-      chart: {
-        type: "donut",
-      },
-      labels: plotData.date,
-      responsive: [
-        {
-          breakpoint: 480,
-          options: {
-            chart: {
-              width: 200,
-            },
-            legend: {
-              position: "bottom",
-            },
-          },
-        },
-      ],
-    },
+    options: donutOptions,
   };
 
   return (
@@ -89,8 +88,8 @@ function ChartComp(props) {
           <div className="row">
             <div className="mixed-chart">
               <Chart
-                options={options.options}
-                series={options.series}
+                options={options}
+                series={series}
                 type={props.graphType !== "donut" ? props.graphType : "line"}
                 width="100%"
                 height={window.innerHeight <= 900 ? "500" : ""}
@@ -101,7 +100,7 @@ function ChartComp(props) {
       ) : (
         <div className="donut m-5 w-100">
           <Chart
-            options={donutData.options}
+            options={donutOptions}
             series={donutData.series}
             type="donut"
             width="100%"

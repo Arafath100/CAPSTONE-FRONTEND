@@ -7,51 +7,46 @@ import verifiedImg from "../../assets/giphy.webp";
 
 // Email Verification Component
 const Emailverify = () => {
-  const [flag, setFlag] = useState("loader");
+  const [status, setStatus] = useState("loading");
   const [timer, setTimer] = useState(5);
   const { string } = useParams();
   const navigate = useNavigate();
 
-  // Effect to verify the email on component mount
   useEffect(() => {
-    verifyEmailAxios(string)
-      .then((res) => {
-        if (res.status === 200) {
-          setFlag("successfull");
+    const fetchData = async () => {
+      try {
+        const response = await verifyEmailAxios(string);
+        if (response.status === 200) {
+          setStatus("success");
         }
-      })
-      .catch((err) => {
-        console.log(err);
-        if (err.response.data.message === "invalid credential") {
-          setFlag("invalid");
+      } catch (error) {
+        console.error(error);
+        if (error.response?.data.message === "invalid credential") {
+          setStatus("invalid");
         } else {
-          console.log(err);
+          console.error(error);
         }
-      });
-  }, []);
+      }
+    };
 
-  // Countdown timer logic for successful verification
-  if (flag === "successfull") {
-    if (timer > -1) {
-      setInterval(() => {
+    fetchData();
+  }, [string]);
+
+  useEffect(() => {
+    if (status === "success" && timer > 0) {
+      const timeoutId = setTimeout(() => {
         setTimer(timer - 1);
       }, 1000);
-    } else {
+
+      return () => clearTimeout(timeoutId);
+    } else if (timer === 0 || status === "invalid") {
       navigate("/login");
     }
-  }
-
-  // Redirect to login page if verification is invalid or timer reaches 0
-  if (flag === 0) {
-    navigate("/login");
-  }
+  }, [status, timer, navigate]);
 
   return (
-    <div
-      className="d-flex justify-content-center align-items-center"
-      style={{ height: "80vh" }}
-    >
-      {flag === "loader" ? (
+    <div className="d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
+      {status === "loading" ? (
         <BallTriangle
           height={100}
           width={100}
@@ -62,13 +57,13 @@ const Emailverify = () => {
           wrapperStyle=""
           visible={true}
         />
-      ) : flag === "invalid" ? (
+      ) : status === "invalid" ? (
         <img src={inv} alt="" />
       ) : (
         <div>
           <img src={verifiedImg} alt="" />
           <hr />
-          <h3>login page in</h3>
+          <h3>Login page in</h3>
           <h4>{timer}</h4>
         </div>
       )}

@@ -3,57 +3,29 @@
 // Warning toast
 import { toast } from "react-toastify";
 
+const defaultToastOptions = {
+  position: "top-right",
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+  theme: "colored",
+};
+
 export function toastWarn(text) {
-  toast.warn(text, {
-    position: "top-right",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "colored",
-  });
+  toast.warn(text, defaultToastOptions);
 }
 
-// Success toast
 export function toastSuccess(text) {
-  toast.success(text, {
-    position: "top-right",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "colored",
-  });
+  toast.success(text, defaultToastOptions);
 }
 
-// Default toast
 export function defaultToast(text) {
-  toast(text, {
-    position: "top-right",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "colored",
-  });
+  toast(text, defaultToastOptions);
 }
 
-// Error toast
 export function errorToast(text) {
-  toast.error(text, {
-    position: "top-right",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "colored",
-  });
+  toast.error(text, defaultToastOptions);
 }
