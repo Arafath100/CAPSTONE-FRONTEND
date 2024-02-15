@@ -191,7 +191,7 @@ const Compose = () => {
             <form onSubmit={handleSubmit}>
               <Form.Group controlId="formFileLg " className="mb-3">
                 <Form.Label className="text-start w-100">
-                Recepiant (Only select Excel file below){" "}
+                  Recepiant (Only select Excel file below){" "}
                 </Form.Label>
                 <Form.Control
                   type="file"
@@ -219,11 +219,10 @@ const Compose = () => {
                     Methodically sift through Excel files, singling out those
                     that exclusively house email addresses in their primary
                     column, one by one.
-                    
                   </Form.Text>
                 )}
               </Form.Group>
-              
+
               <br />
               <Form.Group controlId="formFile" className="mb-3">
                 <Form.Label className="text-start w-100">Subject </Form.Label>

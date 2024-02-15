@@ -1,21 +1,17 @@
 import { useFormik } from "formik";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import login from "../../assets/login.png";
-import Context from "../../Context/Context";
 import { loginAxios } from "../../Services/axios";
 import { ColorRingLoading } from "../../Services/loading";
 import { errorToast, toastSuccess, toastWarn } from "../../Services/tostify";
 
-// Functional component for the login page
 const Login = () => {
   const [showPass, setShowPass] = useState("password");
   const [buttonStatus, setButtonStatus] = useState(true);
   const navigate = useNavigate();
-  const contextData = useContext(Context);
 
-  //yup validation
   const userValidationSchema = yup.object().shape({
     email: yup
       .string()
@@ -23,7 +19,7 @@ const Login = () => {
       .required("Email is required"),
     password: yup
       .string()
-      .min(6, "Pasword must have atleast 6 characters")
+      .min(6, "Password must have at least 6 characters")
       .required("Password is required"),
   });
 
@@ -32,7 +28,6 @@ const Login = () => {
     password: "",
   };
 
-  //formik
   const { values, handleChange, errors, handleBlur, touched, handleSubmit } =
     useFormik({
       initialValues: init,
@@ -43,10 +38,9 @@ const Login = () => {
           .then((res) => {
             setButtonStatus(true);
             if (res.status === 200) {
-              toastSuccess("Login Successfull");
+              toastSuccess("Login Successful");
               localStorage.setItem("x-Auth-token", res.data.token);
               localStorage.setItem("user", res.data._id);
-              contextData.setNavFlag(true);
               navigate("/");
             }
           })
@@ -56,7 +50,7 @@ const Login = () => {
               errorToast("Invalid Credentials");
             } else if (err.response.status === 406) {
               toastWarn(
-                "Check your mail and click the verification link then try again"
+                "Check your mail and click the verification link, then try again"
               );
             }
           });
@@ -65,11 +59,11 @@ const Login = () => {
 
   return (
     <div
-      className="d-flex flex-wrap justify-content-center align-items-center "
+      className="d-flex flex-wrap justify-content-center align-items-center"
       style={{ height: "90vh" }}
     >
       <div
-        className="leftArea bg-black text-primary text-start   "
+        className="leftArea bg-black text-primary text-start"
         style={{ width: "300px", height: "380px" }}
       >
         <div>
@@ -80,10 +74,7 @@ const Login = () => {
           />
         </div>
       </div>
-      <div
-        className="leftArea align-items-center d-flex justify-conter-center"
-        style={{}}
-      >
+      <div className="rightArea align-items-center d-flex justify-conter-center">
         <form className="text-start border p-3 " onSubmit={handleSubmit}>
           <div className="mb-3">
             <label htmlFor="exampleInputEmail1" className="form-label">
@@ -91,7 +82,7 @@ const Login = () => {
             </label>
             <input
               type="email"
-              values={values.email}
+              value={values.email}
               name="email"
               className={
                 errors.email && touched.email !== undefined

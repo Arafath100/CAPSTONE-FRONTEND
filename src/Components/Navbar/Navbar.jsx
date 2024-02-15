@@ -25,21 +25,21 @@ function NavComp() {
 
   return (
     <>
-      <Navbar bg="dark" variant="dark">
+      <Navbar variant="dark" className="navbar ">
         <Container >
-          {/* <Navbar.Brand onClick={() => navigate("/")} className="overflow-auto">
-            <b>
+          <Navbar.Brand onClick={() => navigate("/")} className="overflow-auto">
+            <b className="logo">
               {window.innerWidth < 770 ? (
                 <img src={logo} alt="" className="imageStyle " />
               ) : (
                 "BULK EMAIL TOOL"
               )}
             </b>
-          </Navbar.Brand> */}
-          <Navbar.Brand onClick={() => navigate("/")} className="overflow-auto">
-            <img src={logo} alt="" className="imageStyle " />
-            <b>BULK EMAIL TOOL</b>
           </Navbar.Brand>
+          {/* <Navbar.Brand onClick={() => navigate("/")} className="overflow-auto">
+            <img src={logo} alt="" className="imageStyle " />
+            <b className="logo">BULK EMAIL TOOL</b>
+          </Navbar.Brand> */}
           {contextData.navFlag ? (
             <>
               {" "}

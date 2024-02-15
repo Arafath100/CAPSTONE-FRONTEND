@@ -109,7 +109,7 @@ const Settings = () => {
 
   return (
     <div
-      className="d-flex justify-content-center flex-wrap"
+      className="d-flex justify-content-center flex-wrap "
       style={{ width: "100%" }}
     >
       {pageLoading ? (

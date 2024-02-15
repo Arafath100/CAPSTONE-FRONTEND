@@ -2,16 +2,14 @@ import { subDays } from "date-fns";
 import React, { useEffect, useState } from "react";
 import Context from "./Context";
 
-const Provider = (props) => {
+const Provider = ({ children }) => {
   // State for user authentication status
   const [navFlag, setNavFlag] = useState(false);
 
   // State for modals
-  const [isComposeRecipientModalOpen, setComposeRecipientModalOpen] =
-    useState(false);
-  const [isExampleModalOfExcelOpen, setExampleModalOfExcelOpen] =
-    useState(false);
-  const [isPreviewModalOpen, setPreviewModalOpen] = useState(false);
+  const [composeRecipientModalOpen, setComposeRecipientModalOpen] = useState(false);
+  const [exampleModalOfExcelOpen, setExampleModalOfExcelOpen] = useState(false);
+  const [previewModalOpen, setPreviewModalOpen] = useState(false);
 
   // State for log data and time range
   const [logData, setLogData] = useState([]);
@@ -35,11 +33,11 @@ const Provider = (props) => {
       value={{
         navFlag,
         setNavFlag,
-        isComposeRecipientModalOpen,
+        composeRecipientModalOpen,
         setComposeRecipientModalOpen,
-        isExampleModalOfExcelOpen,
+        exampleModalOfExcelOpen,
         setExampleModalOfExcelOpen,
-        isPreviewModalOpen,
+        previewModalOpen,
         setPreviewModalOpen,
         logData,
         setLogData,
@@ -47,7 +45,7 @@ const Provider = (props) => {
         setTimeStamp,
       }}
     >
-      {props.children}
+      {children}
     </Context.Provider>
   );
 };

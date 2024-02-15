@@ -4,41 +4,105 @@
   padding-right: 10px;
 }
 
+.navbar {
+  position: sticky;
+  top: 0;
+  min-height: 80px;
+  /* width: 80%; */
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  letter-spacing: 0.1em;
+  /* overflow: hidden; */
+  background-color: #000;
+  color: aqua;
+}
+
+.logo {
+  font-size: 27px;
+  font-weight: bolder;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #000;
+  /* padding-left: 40px; */
+  background: linear-gradient(
+    to right,
+    aqua,
+    blue,
+    cyan,
+    blue,
+    cyan,
+    skyblue,
+    aqua,
+    cyan
+  );
+  -webkit-background-clip: text;
+  -webkit-text-stroke: 0.1em transparent;
+  background-clip: text;
+  background-size: 400% 400%;
+  animation: animate 7s ease infinite;
+}
+
+@keyframes animate {
+  0% {
+    background-position: 0 0;
+  }
+  25% {
+    background-position: 100% 0;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  75% {
+    background-position: 0 100%;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+/* .hover {
+  letter-spacing: 0.1em;
+  color: aqua;
+  background-color: aqua;
+} */
+
 .home-link:hover {
   background-color: #393d41;
-  border-radius: 0.2rem;
-  border: 1px solid ;
+  border-radius: 0.3rem;
+  border: 1px solid;
 }
 
 .compose-link:hover {
   background-color: #393d41;
-  border-radius: 0.2rem;
-  border: 1px solid ;
+  border-radius: 0.3rem;
+  border: 1px solid;
 }
 
 .graph-link:hover {
   background-color: #393d41;
-  border-radius: 0.2rem;
-  border: 1px solid ;
+  border-radius: 0.3rem;
+  border: 1px solid;
 }
 
 .log-link:hover {
   background-color: #393d41;
-  border-radius: 0.2rem;
-  border: 1px solid ;
+  border-radius: 0.3rem;
+  border: 1px solid;
 }
 
 .settings-link:hover {
   background-color: #393d41;
-  border-radius: 0.2rem;
-  border: 1px solid ;
+  border-radius: 0.3rem;
+  border: 1px solid;
 }
 
 .after::after {
   content: "";
   height: 2px;
   width: 100%;
-  background: rgb(6, 185, 230);
+  background: rgb(1, 248, 248);
   /* position: absolute; */
   display: block;
   opacity: 0;
@@ -56,3 +120,23 @@
     width: fit-content;
   }
 }
+
+@media screen and (max-width: 770px) {
+  .logo {
+    font-size: 20px;
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar .me-auto {
+    margin-top: 10px;
+  }
+
+  .navbar button {
+    margin-top: 10px;
+  }
+}
+
