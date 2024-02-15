@@ -1,17 +1,20 @@
 import { useFormik } from "formik";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import login from "../../assets/login.png";
+import Context from "../../Context/Context";
 import { loginAxios } from "../../Services/axios";
 import { ColorRingLoading } from "../../Services/loading";
 import { errorToast, toastSuccess, toastWarn } from "../../Services/tostify";
 
 const Login = () => {
   const [showPass, setShowPass] = useState("password");
-  const [buttonStatus, setButtonStatus] = useState(true);
-  const navigate = useNavigate();
+  const [buttonStatus , setButtonStatus] = useState(true);
+  const navigate =useNavigate();
+  const contextData = useContext(Context);
 
+  //yup validation
   const userValidationSchema = yup.object().shape({
     email: yup
       .string()
@@ -19,7 +22,7 @@ const Login = () => {
       .required("Email is required"),
     password: yup
       .string()
-      .min(6, "Password must have at least 6 characters")
+      .min(6, "Pasword must have atleast 6 characters")
       .required("Password is required"),
   });
 
@@ -27,43 +30,43 @@ const Login = () => {
     email: "",
     password: "",
   };
-
+  //formik
   const { values, handleChange, errors, handleBlur, touched, handleSubmit } =
     useFormik({
       initialValues: init,
       validationSchema: userValidationSchema,
       onSubmit: (values) => {
-        setButtonStatus(false);
+        setButtonStatus(false)
         loginAxios(values)
-          .then((res) => {
-            setButtonStatus(true);
-            if (res.status === 200) {
-              toastSuccess("Login Successful");
-              localStorage.setItem("x-Auth-token", res.data.token);
-              localStorage.setItem("user", res.data._id);
-              navigate("/");
-            }
-          })
-          .catch((err) => {
-            setButtonStatus(true);
-            if (err.response.status === 401) {
-              errorToast("Invalid Credentials");
-            } else if (err.response.status === 406) {
-              toastWarn(
-                "Check your mail and click the verification link, then try again"
-              );
-            }
-          });
+        .then((res)=>{
+        setButtonStatus(true)
+        if(res.status === 200){
+          toastSuccess("Login Successfull")
+          localStorage.setItem("x-Auth-token",res.data.token)
+          localStorage.setItem("user",res.data._id)
+          contextData.setNavFlag(true)
+          navigate("/")
+        }
+        })
+        .catch((err)=>{
+          setButtonStatus(true)
+          if(err.response.status === 401){
+            errorToast("Invalid Credentials")
+          }else if(err.response.status === 406){
+            toastWarn("Check your mail and click the verification link then try again")
+          }
+        })
       },
     });
 
+
   return (
     <div
-      className="d-flex flex-wrap justify-content-center align-items-center"
+      className="d-flex flex-wrap justify-content-center align-items-center "
       style={{ height: "90vh" }}
     >
       <div
-        className="leftArea bg-black text-primary text-start"
+        className="leftArea bg-black text-primary text-start   "
         style={{ width: "300px", height: "380px" }}
       >
         <div>
@@ -74,15 +77,18 @@ const Login = () => {
           />
         </div>
       </div>
-      <div className="rightArea align-items-center d-flex justify-conter-center">
-        <form className="text-start border p-3 " onSubmit={handleSubmit}>
+      <div
+        className="leftArea align-items-center d-flex justify-conter-center"
+        style={{}}
+      >
+        <form className="text-start border p-3 " onSubmit={handleSubmit} >
           <div className="mb-3">
             <label htmlFor="exampleInputEmail1" className="form-label">
               Email address
             </label>
             <input
               type="email"
-              value={values.email}
+              values={values.email}
               name="email"
               className={
                 errors.email && touched.email !== undefined
@@ -93,8 +99,9 @@ const Login = () => {
               onBlur={handleBlur}
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
+
             />
-            <div id="emailHelp" className="invalid-feedback">
+             <div id="emailHelp" className="invalid-feedback">
               {errors.email}
             </div>
           </div>
@@ -103,20 +110,20 @@ const Login = () => {
               Password
             </label>
             <input
-              type={showPass}
-              value={values.password}
-              name="password"
-              className={
-                errors.password && touched.password !== undefined
-                  ? "form-control is-invalid"
-                  : "form-control"
-              }
-              onChange={handleChange}
-              onBlur={handleBlur}
+               type={showPass}
+               value={values.password}
+               name="password"
+               className={
+                 errors.password && touched.password !== undefined
+                   ? "form-control is-invalid"
+                   : "form-control"
+               }
+               onChange={handleChange}
+               onBlur={handleBlur}
               id="exampleInputPassword1"
               aria-describedby="confirmHelp"
             />
-            <div id="confirmHelp" className="invalid-feedback">
+              <div id="confirmHelp" className="invalid-feedback">
               {errors.password}
             </div>
           </div>
@@ -125,10 +132,8 @@ const Login = () => {
               type="checkbox"
               className="form-check-input"
               id="exampleCheck1"
-              onChange={() => {
-                showPass === "password"
-                  ? setShowPass("text")
-                  : setShowPass("password");
+              onChange={()=>{
+                showPass ==="password"? setShowPass("text"):setShowPass("password")
               }}
             />
             <label className="form-check-label" htmlFor="exampleCheck1">
@@ -136,18 +141,17 @@ const Login = () => {
             </label>
           </div>
           <button type="submit" className="btn btn-primary">
-            {buttonStatus ? "Login" : <ColorRingLoading />}
+            {
+              buttonStatus ? "Login" :
+             <ColorRingLoading />
+            }
           </button>
           <br />
           <br />
-          <div>
-            <Link to="/password-reset">Forgot password?</Link>
-          </div>
+          <div><Link to="/password-reset">Forgot password?</Link></div>
           <br />
-          <div>
-            Don't have an Account? <br />
-            <Link to="/signup">Signup</Link>
-          </div>
+          <div>You Already have an Account? <Link to="/signup">Signup</Link></div>
+          
         </form>
       </div>
     </div>

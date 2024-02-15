@@ -25,7 +25,7 @@ function NavComp() {
 
   return (
     <>
-      <Navbar variant="dark" className="navbar ">
+      <Navbar variant="dark" className="navbar">
         <Container >
           <Navbar.Brand onClick={() => navigate("/")} className="overflow-auto">
             <b className="logo">
